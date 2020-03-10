@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/material_color_primary"
+                android:id="@+id/appbar">
+                <include layout="@layout/toolbar"/>
+                <include layout="@layout/toolbar_multi"/>
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/tab_height"
+                    style="@style/CustomTabLayout.Dark"/>
+            </android.support.design.widget.AppBarLayout>
+
+            <!--中间四个fragment-->
+            <android.support.v4.view.ViewPager
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/ViewPager"
+                android:background="?attr/background_color_main"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <ImageView
+                android:id="@+id/add"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_floatingbtn_day"
+                android:background="@color/transparent"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="@dimen/d38_size"
+                android:layout_marginBottom="@dimen/d80_size"
+                app:layout_behavior="com.fire.localmusic.ui.BottomBarBehavior"/>
+
+            <!-- 底部自定义ationbar -->
+            <fragment android:name="com.fire.localmusic.ui.fragment.BottomActionBarFragment"
+                android:id="@+id/bottom_actionbar_new"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_gravity="bottom"
+                app:layout_behavior="com.fire.localmusic.ui.BottomBarBehavior"/>
+        </android.support.design.widget.CoordinatorLayout>
+
+    </LinearLayout>
+
+
+    <!--测滑菜单-->
+    <!--<include layout="@layout/slide_menu"/>-->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="@dimen/d264_size"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="?attr/background_color_main">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/navigation_header_container">
+            <include layout="@layout/navigation_header"
+                android:id="@+id/header"/>
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="@dimen/d6_size"
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>
